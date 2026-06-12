@@ -2,6 +2,11 @@
 
 A calm productivity MVP for tracking tasks, focus sessions, and visible progress.
 
+## live demo
+
+- **demo:** https://d3f4lt0.github.io/focusboard/
+- **repo:** https://github.com/d3f4lt0/focusboard
+
 ## overview
 
 focusboard started as a static landing page concept.
@@ -76,6 +81,7 @@ The MVP keeps the original project philosophy:
 - [x] add task management
 - [x] add focus timer
 - [x] persist state locally
+- [x] publish live demo
 - [ ] add session history
 - [ ] add lightweight analytics
 - [ ] support custom focus lengths
