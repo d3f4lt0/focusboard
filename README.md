@@ -2,6 +2,10 @@
 
 A clean concept for tracking focus, tasks, and momentum.
 
+## preview
+
+A minimal landing page concept is included in `index.html`.
+
 ## idea
 
 `focusboard` is a lightweight productivity dashboard concept for people who want clarity without clutter.
@@ -11,7 +15,7 @@ A clean concept for tracking focus, tasks, and momentum.
 - simple task flow
 - focus sessions
 - momentum tracking
-- clean visual design
+- calm visual design
 - low friction daily use
 
 ## why
@@ -19,22 +23,19 @@ A clean concept for tracking focus, tasks, and momentum.
 Most productivity tools feel heavy.
 I want something sharper, calmer, and actually pleasant to open.
 
+## files
+
+- `index.html` — static landing page concept
+- `app-idea.md` — product notes and direction
+
 ## status
 
-Concept phase.
-Designing the core experience first.
+Concept phase, but now with a visual direction.
 
-## possible stack
+## next
 
-- Next.js
-- TypeScript
-- Tailwind CSS
-- PostgreSQL
-
-## roadmap
-
-- [ ] define product scope
-- [ ] create UI direction
+- [x] define product scope
+- [x] create early landing page direction
 - [ ] build dashboard shell
 - [ ] add tasks and sessions
 - [ ] explore analytics view
