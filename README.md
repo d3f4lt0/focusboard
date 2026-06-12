@@ -1,39 +1,82 @@
 # focusboard
 
-A clean productivity concept for tracking focus, tasks, and momentum.
+A calm productivity MVP for tracking tasks, focus sessions, and visible progress.
 
-## preview
+## overview
 
-`focusboard` now includes a polished static landing page concept in `index.html` with its own stylesheet.
+focusboard started as a static landing page concept.
+It is now a lightweight functional MVP that keeps the same calm visual direction while adding real daily utility.
 
-## product idea
+## features
 
-focusboard is a calm productivity workspace for people who want:
+- add tasks quickly
+- mark tasks as completed
+- delete tasks
+- visible progress summary and progress bar
+- 25-minute focus timer
+- start / pause / reset timer controls
+- localStorage persistence for tasks and timer state
+- empty states, keyboard-friendly controls, and responsive layout
 
-- less clutter
-- clearer priorities
-- simple focus sessions
-- visible momentum without dashboard overload
+## project structure
 
-## files
+- `index.html` — application structure and content
+- `styles.css` — visual system, layout, transitions, responsive behavior
+- `app.js` — task manager, timer logic, persistence, rendering
+- `app-idea.md` — early product notes
 
-- `index.html` — landing page concept
-- `styles.css` — visual system for the concept
-- `app-idea.md` — product notes and direction
+## setup
 
-## direction
+No build step is required.
 
-The goal is a tool that feels:
+### option 1 — open directly
 
-- calm
-- useful
-- intentional
-- light enough to open every day
+Open `index.html` in your browser.
 
-## next steps
+### option 2 — serve locally
 
-- [x] define product scope
-- [x] create a visual landing page direction
-- [ ] build an actual dashboard shell
-- [ ] add task and session interactions
-- [ ] explore persistence and analytics
+If you want a local server:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then open:
+
+```txt
+http://localhost:8080
+```
+
+## usage
+
+1. Add one or more tasks.
+2. Mark them complete as you finish them.
+3. Start a 25-minute focus session.
+4. Reload the page and keep going — your state is restored automatically.
+
+## screenshots
+
+Screenshots can be added here once the UI is captured.
+
+- `docs/screenshot-home.png`
+- `docs/screenshot-active-session.png`
+
+## design notes
+
+The MVP keeps the original project philosophy:
+
+- calm productivity
+- minimal distractions
+- visible progress
+- simple, honest daily flow
+
+## roadmap
+
+- [x] convert landing concept into a functional MVP
+- [x] add task management
+- [x] add focus timer
+- [x] persist state locally
+- [ ] add session history
+- [ ] add lightweight analytics
+- [ ] support custom focus lengths
+- [ ] add task categories without increasing clutter

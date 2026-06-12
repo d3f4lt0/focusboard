@@ -6,7 +6,7 @@
     <title>focusboard — clarity without clutter</title>
     <meta
       name="description"
-      content="focusboard is a calm productivity dashboard concept for tracking focus, tasks, and momentum without clutter."
+      content="focusboard is a calm productivity dashboard for tracking focus, tasks, and momentum without clutter."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -15,7 +15,7 @@
       <nav class="nav">
         <div class="brand">focusboard</div>
         <div class="nav-links">
-          <a href="#features">features</a>
+          <a href="#workspace">workspace</a>
           <a href="#system">system</a>
           <a href="#flow">flow</a>
           <a href="https://github.com/d3f4lt0/focusboard">github</a>
@@ -24,15 +24,15 @@
 
       <header class="hero">
         <div>
-          <span class="badge"><span class="dot"></span> concept in motion</span>
+          <span class="badge"><span class="dot"></span> mvp in motion</span>
           <h1>Clarity for people who hate clutter.</h1>
           <p class="lead">
             focusboard is a calm productivity workspace for tracking tasks, focus sessions,
             and momentum — built for people who want signal, not noise.
           </p>
           <div class="actions">
-            <a class="btn primary" href="https://github.com/d3f4lt0/focusboard">view repo</a>
-            <a class="btn secondary" href="#features">explore concept</a>
+            <a class="btn primary" href="#workspace">open workspace</a>
+            <a class="btn secondary" href="https://github.com/d3f4lt0/focusboard">view repo</a>
           </div>
           <div class="quote">
             <strong>idea:</strong>
@@ -42,103 +42,169 @@
           </div>
         </div>
 
-        <div class="panel mock">
+        <div class="panel mock" aria-label="Focusboard preview">
           <div class="mock-header">
-            <span>today / tuesday</span>
-            <span>deep work • 2h 10m</span>
+            <span>today / calm mode</span>
+            <span id="header-progress-label">0% complete</span>
           </div>
           <div class="mock-grid">
             <div class="mini-card">
-              <strong>top priority</strong>
-              <p class="muted">ship one meaningful thing today.</p>
+              <strong>active tasks</strong>
+              <p class="muted"><span id="active-count">0</span> things still matter today.</p>
             </div>
             <div class="mini-card">
-              <strong>momentum</strong>
-              <p class="muted">5 focused days this week.</p>
+              <strong>focus session</strong>
+              <p class="muted"><span id="session-length">25</span> minutes by default. no pressure, just rhythm.</p>
             </div>
           </div>
-          <div class="task-list">
-            <div class="task"><span>design landing page</span><span class="dot"></span></div>
-            <div class="task"><span>refine task flow</span><span class="dot"></span></div>
-            <div class="task"><span>track focus sessions</span><span class="dot"></span></div>
+          <div class="task-list" id="hero-task-preview" aria-live="polite">
+            <div class="task preview-task"><span>add a task to begin</span><span class="dot"></span></div>
+            <div class="task preview-task"><span>start one focus block</span><span class="dot"></span></div>
+            <div class="task preview-task"><span>let progress stay visible</span><span class="dot"></span></div>
           </div>
         </div>
       </header>
 
-      <section id="features">
-        <div class="section-head">
-          <div class="kicker">why it exists</div>
-          <h2>Designed to feel lighter than the tools it replaces.</h2>
-          <p class="muted">
-            focusboard is about reducing friction: cleaner priorities, calmer visuals, and a workflow that helps you move instead of manage.
-          </p>
-        </div>
-        <div class="features">
-          <div class="panel feature">
-            <strong>calm by default</strong>
-            <p class="muted">less visual noise, less friction, more room to think clearly.</p>
+      <main>
+        <section id="workspace">
+          <div class="section-head">
+            <div class="kicker">workspace</div>
+            <h2>A small workspace that actually does something.</h2>
+            <p class="muted">
+              The MVP keeps the original direction, but turns it into a usable daily board: tasks, focus time, and progress that survives reloads.
+            </p>
           </div>
-          <div class="panel feature">
-            <strong>focused workflow</strong>
-            <p class="muted">tasks, sessions, and progress should work together instead of competing.</p>
-          </div>
-          <div class="panel feature">
-            <strong>useful over busy</strong>
-            <p class="muted">the goal is not tracking everything. the goal is helping you finish what matters.</p>
-          </div>
-        </div>
-      </section>
 
-      <section id="system">
-        <div class="section-head">
-          <div class="kicker">core system</div>
-          <h2>A small set of signals that actually matter.</h2>
-        </div>
-        <div class="stats-grid">
-          <div class="panel stat-card">
-            <strong>today</strong>
-            <p class="muted">single-screen view for what matters now.</p>
-          </div>
-          <div class="panel stat-card">
-            <strong>focus sessions</strong>
-            <p class="muted">time tracked with purpose, not guilt.</p>
-          </div>
-          <div class="panel stat-card">
-            <strong>momentum</strong>
-            <p class="muted">weekly streaks and rhythm, not vanity metrics.</p>
-          </div>
-          <div class="panel stat-card">
-            <strong>clarity</strong>
-            <p class="muted">see progress without drowning in dashboards.</p>
-          </div>
-        </div>
-      </section>
+          <div class="workspace-grid">
+            <section class="panel app-panel" aria-labelledby="tasks-title">
+              <div class="panel-head">
+                <div>
+                  <div class="kicker">tasks</div>
+                  <h3 id="tasks-title">What matters today</h3>
+                </div>
+                <div class="task-summary" id="task-summary">0 of 0 complete</div>
+              </div>
 
-      <section id="flow">
-        <div class="section-head">
-          <div class="kicker">product flow</div>
-          <h2>Simple enough to open daily. Sharp enough to keep using.</h2>
-        </div>
-        <div class="steps">
-          <div class="panel step">
-            <strong>01 — choose the real priority</strong>
-            <p class="muted">start from one meaningful target instead of ten vague ones.</p>
+              <form id="task-form" class="task-form">
+                <label class="sr-only" for="task-input">Add a task</label>
+                <input
+                  id="task-input"
+                  name="task"
+                  type="text"
+                  maxlength="120"
+                  placeholder="Add one meaningful task"
+                  autocomplete="off"
+                  required
+                />
+                <button type="submit" class="btn primary small-btn">Add task</button>
+              </form>
+
+              <div class="progress-block" aria-label="Task progress">
+                <div class="progress-meta">
+                  <span>progress</span>
+                  <span id="progress-percent">0%</span>
+                </div>
+                <div class="progress-bar" aria-hidden="true">
+                  <div class="progress-fill" id="progress-fill"></div>
+                </div>
+              </div>
+
+              <div id="task-empty" class="empty-state">
+                <strong>Nothing here yet.</strong>
+                <p class="muted">Start with one clear task. focusboard works best when the list stays honest.</p>
+              </div>
+
+              <ul id="task-list" class="task-items" aria-live="polite" aria-label="Task list"></ul>
+            </section>
+
+            <section class="panel app-panel timer-panel" aria-labelledby="timer-title">
+              <div class="panel-head">
+                <div>
+                  <div class="kicker">focus</div>
+                  <h3 id="timer-title">A calm 25-minute block</h3>
+                </div>
+                <div class="timer-status" id="timer-status">ready</div>
+              </div>
+
+              <div class="timer-display-wrap">
+                <div class="timer-ring">
+                  <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+                </div>
+                <p class="muted timer-copy">One session at a time. Start when you're ready, pause when you need to breathe.</p>
+              </div>
+
+              <div class="timer-controls">
+                <button id="start-pause-btn" class="btn primary small-btn" type="button">Start</button>
+                <button id="reset-btn" class="btn secondary small-btn" type="button">Reset</button>
+              </div>
+
+              <div class="timer-meta-grid">
+                <div class="mini-card">
+                  <strong>session length</strong>
+                  <p class="muted">25 minutes, intentionally simple.</p>
+                </div>
+                <div class="mini-card">
+                  <strong>state memory</strong>
+                  <p class="muted">Your tasks and timer return after reload.</p>
+                </div>
+              </div>
+            </section>
           </div>
-          <div class="panel step">
-            <strong>02 — work in focused blocks</strong>
-            <p class="muted">track attention in sessions, not just tasks.</p>
+        </section>
+
+        <section id="system">
+          <div class="section-head">
+            <div class="kicker">core system</div>
+            <h2>A small set of signals that actually matter.</h2>
           </div>
-          <div class="panel step">
-            <strong>03 — keep momentum visible</strong>
-            <p class="muted">end the day knowing what moved and what needs the next push.</p>
+          <div class="stats-grid">
+            <div class="panel stat-card">
+              <strong>today</strong>
+              <p class="muted">single-screen view for what matters now.</p>
+            </div>
+            <div class="panel stat-card">
+              <strong>focus sessions</strong>
+              <p class="muted">time tracked with purpose, not guilt.</p>
+            </div>
+            <div class="panel stat-card">
+              <strong>momentum</strong>
+              <p class="muted">visible progress instead of vague intention.</p>
+            </div>
+            <div class="panel stat-card">
+              <strong>clarity</strong>
+              <p class="muted">see progress without drowning in dashboards.</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section id="flow">
+          <div class="section-head">
+            <div class="kicker">product flow</div>
+            <h2>Simple enough to open daily. Sharp enough to keep using.</h2>
+          </div>
+          <div class="steps">
+            <div class="panel step">
+              <strong>01 — choose the real priority</strong>
+              <p class="muted">start from one meaningful target instead of ten vague ones.</p>
+            </div>
+            <div class="panel step">
+              <strong>02 — work in focused blocks</strong>
+              <p class="muted">track attention in sessions, not just tasks.</p>
+            </div>
+            <div class="panel step">
+              <strong>03 — keep momentum visible</strong>
+              <p class="muted">end the day knowing what moved and what needs the next push.</p>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <footer>
         <span>designed as an early concept by d3f4lt.</span>
         <span>calm product design • focus systems • built in public</span>
       </footer>
     </div>
+
+    <script src="./app.js"></script>
   </body>
 </html>
